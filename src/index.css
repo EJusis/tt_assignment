@@ -1,13 +1,76 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/*@font-face {*/
+/*  font-family: 'HK Grotesk';*/
+/*  src: url("assets/fonts/HKGrotesk-Medium.otf") format("opentype");*/
+/*  font-weight: normal;*/
+/*  font-style: normal;*/
+/*  }*/
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+/*@font-face {*/
+/*  font-family: 'HK Grotesk';*/
+/*  src: url("assets/fonts/HKGrotesk-Bold.otf") format("opentype");*/
+/*  font-weight: bold;*/
+/*  font-style: normal;*/
+/*}*/
+
+/*@font-face {*/
+/*  font-family: 'HK Grotesk';*/
+/*  src: url("assets/fonts/HKGrotesk-SemiBold.otf") format("opentype");*/
+/*  font-weight: 600;*/
+/*  font-style: normal;*/
+/*}*/
+
+/*!* Box sizing rules *!*/
+/**,*/
+/**::before,*/
+/**::after {*/
+/*  box-sizing: border-box;*/
+/*}*/
+
+/*!* Remove default margin *!*/
+/*body,*/
+/*h1,*/
+/*h2,*/
+/*h3,*/
+/*h4,*/
+/*p {*/
+/*  margin: 0;*/
+/*}*/
+
+
+/*!* Typography *!*/
+
+/*!* Set core root defaults *!*/
+/*html:focus-within {*/
+/*  scroll-behavior: smooth;*/
+/*}*/
+
+/*!* Set core body defaults *!*/
+/*body {*/
+/*  text-rendering: optimizeSpeed;*/
+/*  !*line-height: 1.5;*!*/
+/*  font-family: "HK Grotesk", 'sans-serif';*/
+/*  font-size: 100%;*/
+/*}*/
+
+/*!* Inherit fonts for inputs and buttons *!*/
+/*input,*/
+/*button,*/
+/*select {*/
+/*  font: inherit;*/
+/*}*/
+
+
+/*:root {*/
+/*  --color-dark: #250B38;*/
+/*  --color-grey: #52526A;*/
+/*  --color-light: #F4EEF7;*/
+/*  --color-accent: #F0A023;*/
+/*}*/
+
+/*!* Button styling  *!*/
+
+
+
+
+
+

@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'HK Grotesk';
+    src: url("../../assets/fonts/HKGrotesk-Medium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HK Grotesk';
+    src: url("../../assets/fonts/HKGrotesk-Bold.otf") format("opentype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HK Grotesk';
+    src: url("../../assets/fonts/HKGrotesk-SemiBold.otf") format("opentype");
+    font-weight: 600;
+    font-style: normal;
+}
