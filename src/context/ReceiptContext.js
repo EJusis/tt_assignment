@@ -9,19 +9,44 @@ const initialState = {
 
 export const ReceiptReducer = (state, action) => {
 
-    const matchingReceipts = state.receipts.find(receipt => receipt.receiptId === action.payload.id )
+    const matchingReceipt = state.receipts.find(receipt => receipt.receiptId === action.payload.id )
 
     switch (action.type) {
         case 'ADD_RECEIPT':
             return { ...state, receipts: [...state.receipts, action.payload] }
         case 'ADD_CATEGORY':
-            matchingReceipts.category = action.payload.category
-            return { ...state }
+
+            // add initial expense row on select change
+            if (!matchingReceipt.isInitialized) {
+                matchingReceipt.isInitialized = true
+                matchingReceipt.category = action.payload.category
+                matchingReceipt.expenses.push({
+                    note: '',
+                    price: 0,
+                    expenseId: Math.floor(Math.random() * 100000)
+                })
+                return { ...state }
+            } else {
+                matchingReceipt.category = action.payload.category
+                return { ...state }
+            }
         case 'ADD_EXPENSE':
-            matchingReceipts.expenses.push(action.payload.expense)
+            matchingReceipt.expenses.push(action.payload.expense)
             return { ...state }
         case 'UPDATE_EXPENSE':
-           // UPDATING LOGIC
+            const matchingExpense = matchingReceipt.expenses.find(expense => expense.expenseId === action.payload.expenseId)
+
+            // updating expense values
+            matchingExpense.note = action.payload.expense.note
+            matchingExpense.price = action.payload.expense.price
+
+            // getting single receipt total sum
+            const priceArray = matchingReceipt.expenses.map(expense => expense.price)
+            matchingReceipt.receiptTotal = priceArray.reduce((acc, item) => (acc += item), 0)
+
+            // setting total initial state sum
+            const totalArray = state.receipts.map(receipt => receipt.receiptTotal)
+            state.totalBill = totalArray.reduce((acc, item) => (acc += item), 0)
             return { ...state }
         default:
             return state
@@ -63,6 +88,7 @@ export const ReceiptContextProvider = ({ children }) => {
     return (
         <ReceiptContext.Provider value={{
             receipts: state.receipts,
+            totalBill: state.totalBill,
             addReceipt,
             addCategory,
             addExpense,

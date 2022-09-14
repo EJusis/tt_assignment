@@ -5,5 +5,4 @@ export const ContainerBody = styled.div`
   margin: 0 auto;
   max-width: 1200px;
   height: 100vh;
-  border: 2px solid red;
 `

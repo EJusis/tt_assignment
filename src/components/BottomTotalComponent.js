@@ -2,25 +2,34 @@ import React, {useContext} from 'react';
 import styled from 'styled-components'
 import {StyledButton} from "./Button";
 import {ReceiptContext} from "../context/ReceiptContext";
+import {formatValue} from "react-currency-input-field";
 
 const BottomTotalComponent = () => {
-    const { addReceipt } = useContext(ReceiptContext)
+    const { addReceipt, totalBill } = useContext(ReceiptContext)
 
     const handleClick = () => {
         const newReceipt = {
             category: '',
             expenses: [],
             receiptTotal: 0,
-            receiptId: Math.floor(Math.random() * 100000)
+            receiptId: Math.floor(Math.random() * 100000),
+            isInitialized: false
         }
         addReceipt(newReceipt)
     }
 
+    const formattedValue = formatValue({
+        value: `${totalBill}`,
+        groupSeparator: ',',
+        decimalSeparator: '.',
+        decimalScale: 2,
+        prefix: '€',
+    })
 
     return (
         <BottomTotal>
             <div className="text-wrap">
-                <h3>Total <span>€55.68</span></h3>
+                <h3>Total <span>{formattedValue}</span></h3>
             </div>
             <StyledButton onClick={handleClick}>Add receipt</StyledButton>
         </BottomTotal>

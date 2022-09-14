@@ -4,8 +4,7 @@ import StyledSelect from "./StyledSelect";
 import { StyledButton } from "./Button";
 import {ReceiptContext} from "../context/ReceiptContext";
 
-
-const TopSelectComponent = ({ id }) => {
+const TopSelectComponent = ({ receipt, id }) => {
     const { addCategory, addExpense } = useContext(ReceiptContext)
 
     const handleChange = (newValue) => {
@@ -33,7 +32,12 @@ const TopSelectComponent = ({ id }) => {
             <div className='select-container'>
                 <StyledSelect changeValue={handleChange}/>
             </div>
-            <StyledButton onClick={handleClick} variant='accent'>Add expense</StyledButton>
+            <StyledButton
+                variant='accent'
+                onClick={handleClick}
+                disabled={!receipt.isInitialized}
+
+            >Add expense</StyledButton>
         </TopSelect>
     );
 };
@@ -52,6 +56,4 @@ const TopSelect = styled.header`
   .select-container {
     width: max(170px, 47%)
   }
-
-  
 `

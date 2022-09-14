@@ -54,6 +54,7 @@ const StyledSelect = ({ changeValue }) => {
             styles={colorStyles}
             placeholder={null}
             onChange={handleChange}
+            isSearchable={false}
         />
     );
 };

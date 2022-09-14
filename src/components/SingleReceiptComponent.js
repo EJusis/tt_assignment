@@ -18,7 +18,7 @@ const SingleReceiptComponent = ({ receipt, id }) => {
 
     return (
         <ContainerSingleReceipt>
-            <TopSelectComponent id={id}/>
+            <TopSelectComponent receipt={receipt} id={id} />
             <ContainerExpense>
                 {receipt.expenses.map((expense, index) =>
                     <ExpenseComponent key={index} expense={expense} id={id}/>
@@ -26,7 +26,7 @@ const SingleReceiptComponent = ({ receipt, id }) => {
             </ContainerExpense>
             <SingleReceiptTotal>
                 <p>Total</p>
-                <span>{formattedValue}</span>
+                <span>{ formattedValue }</span>
             </SingleReceiptTotal>
         </ContainerSingleReceipt>
     );

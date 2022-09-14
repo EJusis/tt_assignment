@@ -1,45 +1,51 @@
-import React from 'react';
+import React, {useEffect, useContext, useState } from 'react';
 import CurrencyInput from 'react-currency-input-field';
 import styled from "styled-components";
-import {useContext, useState} from 'react';
 import {ReceiptContext} from "../context/ReceiptContext";
 
 const ExpenseComponent = ({ expense, id }) => {
-    const [note, setNote] = useState('')
-    const [cost, setCost] = useState(0)
-
     const { updateExpense } = useContext(ReceiptContext)
+    const [note, setNote] = useState('')
+    const [price, setPrice] = useState(0)
 
-
-    const handleChange = () => {
-        const updatedExpense = {
-            expense: {
-                note: note,
-                price: Number(cost)
-            },
-            id: id,
-            expenseId: expense.expenseId
-
-        }
+    const handleChange = (e) => {
+        setNote(e.target.value)
     }
 
+    const handleOnValueChange = (value) => {
+        setPrice(value === undefined ? 0 : value)
+    }
+
+    useEffect(() => {
+            const updatedExpense = {
+                expense: {
+                    note: note,
+                    price: Number(price),
+                    expenseId: expense.expenseId
+                },
+                id: id,
+                expenseId: expense.expenseId
+            }
+        updateExpense(updatedExpense)
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[note, price])
+
+
     return (
-            <InputWrapper onChange={handleChange}>
+            <InputWrapper>
                 <input className='input-text'
                        type="text"
                        placeholder='Expense name'
                        value={note}
-                       onChange={(e) => setNote(e.target.value)
-                       }
+                       onChange={handleChange}
                 />
                 <CurrencyInput
                     className='input-price'
                     placeholder='€0.00'
                     decimalsLimit={2}
                     prefix='€'
-                    onValueChange={(values) =>
-                        setCost(values)
-                    }
+                    allowNegativeValue={false}
+                    onValueChange={handleOnValueChange}
                 />
             </InputWrapper>
     );
@@ -66,7 +72,6 @@ const InputWrapper = styled.form`
     ::placeholder,
     ::-webkit-input-placeholder {
       opacity: 0.4;
-      color: #52526A;
     }
   }
 
